@@ -21,7 +21,7 @@ const CartDrawer = ({ isCartOpen, toggleCart }) => {
       {isCartOpen && (
         <div
           onClick={toggleCart}
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300"
+          className="fixed inset-0 bg-transparent bg-opacity-50 z-40 transition-opacity duration-300"
         ></div>
       )}
 
@@ -70,10 +70,10 @@ const MobileDrawer = ({ isMenuOpen, toggleMenu }) => {
   const mobileLinks = [
     { name: 'Handmade Jewelry', href: '/jewelry/hidden-potential-seed-jewelry' },
     { name: 'Handcrafted Sarees', href: '/sarees/tussar-silk-sarees' },
-    { name: 'Readymade Blouses', href: '/blouses/readymade-saree-blouses' },
-    { name: 'Tops & Tunics', href: '/tops/summer-tops' },
+    { name: 'Readymade Blouses', href: '/blouses/sleeveless-blouses' },
+    { name: 'Tops & Tunics', href: '/tops/tank-&-tops' },
     { name: 'Skirts & Pants', href: '/skirts/long-skirts' },
-    { name: 'Upscaled Vintage Apparel', href: '/vintage/kaftans' },
+    { name: 'Upscaled Vintage Apparel', href: '/vintage/halter-tops' },
     { name: 'Accessories', href: '/accessories/bookmarks' },
     { name: 'SALE', href: '/sale', isSale: true },
     // { name: 'My Account', href: '/account', isSpecial: true },
@@ -85,7 +85,7 @@ const MobileDrawer = ({ isMenuOpen, toggleMenu }) => {
     <>
       {/* Backdrop Overlay */}
       {isMenuOpen && (
-        <div onClick={toggleMenu} className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden transition-opacity duration-300"></div>
+        <div onClick={toggleMenu} className="fixed inset-0 bg-transparent bg-opacity-50 z-40 md:hidden transition-opacity duration-300"></div>
       )}
 
       {/* Drawer Panel */}
@@ -222,8 +222,8 @@ const MegaDropdownLink = ({ link }) => {
                                         {/* Top & Tunics section (Bottom Left of the image) */}
                                         <div className="mt-4 pt-2 border-t border-gray-100">
                                             <p className="text-sm font-bold text-gray-900 uppercase mb-3">Top & Tunics</p>
-                                            <Link to="/tops/summer-tops" className="block text-sm text-gray-700 hover:text-indigo-600 py-1">Tank & Tops</Link>
-                                            <Link to="/tops/tunics-kurtis" className="block text-sm text-gray-700 hover:text-indigo-600 py-1">Tunics & Kurtis</Link>
+                                            <Link to="/tops/tank-&-tops" className="block text-sm text-gray-700 hover:text-indigo-600 py-1">Tank & Tops</Link>
+                                            <Link to="/tops/short-tops-&-tunics" className="block text-sm text-gray-700 hover:text-indigo-600 py-1">Tunics & Kurtis</Link>
                                         </div>
                                         {/* Bottom House section (Below Top & Tunics) */}
                                         <div className="mt-4 pt-2 border-t border-gray-100">
