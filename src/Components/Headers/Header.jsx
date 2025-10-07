@@ -76,7 +76,7 @@ const MobileDrawer = ({ isMenuOpen, toggleMenu }) => {
     { name: 'Upscaled Vintage Apparel', href: '/vintage/kaftans' },
     { name: 'Accessories', href: '/accessories/bookmarks' },
     { name: 'SALE', href: '/sale', isSale: true },
-    { name: 'My Account', href: '/account', isSpecial: true },
+    // { name: 'My Account', href: '/account', isSpecial: true },
   ];
 
   const drawerWidthClass = "w-64 sm:w-80";
