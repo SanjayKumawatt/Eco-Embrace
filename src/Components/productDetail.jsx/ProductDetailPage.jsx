@@ -27,12 +27,19 @@ import { headbandProducts as HEADBAND_DATA } from '../../Pages/BohemianHeadbands
 import { diaryProducts as DIARIES_DATA } from '../../Pages/LeatherDiaries';
 import { bookmarkProducts as BOOKMARK_DATA } from '../../Pages/PattachitraBookmarks';
 import { toteBagProducts as TOTES_DATA } from '../../Pages/KalamkariToteBags';
+import { batikSareeProducts as BATIK_DATA } from '../../Pages/BatikMulmulSarees';
+import { chiffonBlouseProducts as CHIFFON_DATA } from '../../Pages/PrintedChiffonBlouses';
+import { plainBlouseProducts as PLAIN_BLOUSE_DATA } from '../../Pages/PlainSilkBlouses';
+import { ajrakhBlouseProducts as AJRAKH_BLOUSE_DATA } from '../../Pages/AjrakhBlouses';
+import { bikiniBlouseProducts as BIKINI_BLOUSE_DATA } from '../../Pages/BikiniStyleBatikBlouses';
+import { bempuriBlouseProducts as BEMPURI_DATA } from '../../Pages/BempuriHandloomBlouses';
+
 
 import { terracottaProducts as TERRACOTTA_DATA } from '../../Pages/TerracottaJewelry'; // Assuming you named the file TerracottaJewelry.jsx
 
 // --- 1. सभी GRID डेटा को मर्ज करें ---
 const ALL_PRODUCTS_DATA_GRID = [...HIDDEN_POTENTIAL_DATA, ...TERRACOTTA_DATA, ...DOKRA_DATA,
-...JHUMKA_DATA,...SAREE_DATA, ...IKAT_SAREE_DATA, ...MAHESHWARI_DATA,...CHANDERI_DATA,...SOUTH_COTTON_DATA, ...BAGRU_DATA, ...KOTA_DORIA_DATA, ...BLOUSE_DATA, ...BANARASI_BLOUSE_DATA, ...TOPS_DATA, ...TUNICS_DATA, ...KURTIS_DATA, ...SKIRTS_DATA, ...PALAZZO_DATA, ...HALTER_BLOUSE_DATA, ...LINEN_DATA, ...HEADBAND_DATA, ...DIARIES_DATA, ...BOOKMARK_DATA,...TOTES_DATA];
+...JHUMKA_DATA,...SAREE_DATA, ...IKAT_SAREE_DATA, ...MAHESHWARI_DATA,...CHANDERI_DATA,...SOUTH_COTTON_DATA, ...BAGRU_DATA, ...KOTA_DORIA_DATA, ...BLOUSE_DATA, ...BANARASI_BLOUSE_DATA, ...TOPS_DATA, ...TUNICS_DATA, ...KURTIS_DATA, ...SKIRTS_DATA, ...PALAZZO_DATA, ...HALTER_BLOUSE_DATA, ...LINEN_DATA, ...HEADBAND_DATA, ...DIARIES_DATA, ...BOOKMARK_DATA,...TOTES_DATA, ...BATIK_DATA, ...CHIFFON_DATA, ...PLAIN_BLOUSE_DATA, ...AJRAKH_BLOUSE_DATA, ...BIKINI_BLOUSE_DATA, ...BEMPURI_DATA];
 
 
 // --- 2. PDP डिटेल्स के साथ डेटा को एनहान्स करें (Merge Logic) ---

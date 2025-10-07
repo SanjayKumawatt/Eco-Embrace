@@ -33,7 +33,16 @@ import LeatherDiaries from "./Pages/LeatherDiaries";
 import PattachitraBookmarks from "./Pages/PattachitraBookmarks";
 import KalamkariToteBags from "./Pages/KalamkariToteBags";
 import NoSalePage from "./Pages/NoSalePage";
-
+import BatikMulmulSarees from "./Pages/BatikMulmulSarees";
+import PrintedChiffonBlouses from "./Pages/PrintedChiffonBlouses";
+import PlainSilkBlouses from "./Pages/PlainSilkBlouses";
+import KanthaStitchBlouses from "./Pages/KanthaStitchBlouses";
+import AjrakhBlouses from "./Pages/AjrakhBlouses";
+import BikiniStyleBatikBlouses from "./Pages/BikiniStyleBatikBlouses";
+import BempuriHandloomBlouses from "./Pages/BempuriHandloomBlouses";
+import Privacy from "./Components/Privacy";
+import Refund from "./Components/Refund";
+import Terms from "./Components/Terms";
 
 function App() {
   const router = createBrowserRouter([
@@ -50,7 +59,7 @@ function App() {
           path: "jewelry/hidden-potential-seed-jewelry",
           element: <HiddenPotentialSeedJewelry />
         },
-        
+
         {
           path: "shop/clearance",
           element: <HiddenPotentialSeedJewelry />
@@ -103,94 +112,152 @@ function App() {
         },
         {
           path: "sarees/kota-doria-sarees",
-          element: <KotaDoriaSarees/>
+          element: <KotaDoriaSarees />
         },
         {
-          path: "blouses/sleeveless-blouses",
-          element: <ReadyMadeSareeBlouses/>
+          path: "/blouses/sleeveless-blouses",
+          element: <ReadyMadeSareeBlouses />
         },
         {
           path: "shop/ready-made-saree-blouses",
-          element: <ReadyMadeSareeBlouses/>
+          element: <ReadyMadeSareeBlouses />
         },
         {
           path: "blouses/benarsi-brocade-blouses",
-          element: <BanarasiBrocadeBlouses/>
+          element: <BanarasiBrocadeBlouses />
         },
         {
           path: "shop/best-selling",
-          element: <TussarSilkSarees/>
-        },
-        // Image Addin Bachi hai
-        {
-          path:"tops/tanks-&-tops",
-          element:<SummerTops/>
+          element: <TussarSilkSarees />
         },
         {
-          path:"tops/short-tops-&-tunics",
-          element:<WomenTunics/>
+          path: "tops/tank-&-tops",
+          element: <SummerTops />
         },
         {
-          path:"tops/kurtis",
-          element:<WomenKurtis/>
+          path: "tops/short-tops-&-tunics",
+          element: <WomenTunics />
         },
         {
-          path:"skirts/skirts",
-          element:<LongSkirts/>
+          path: "tops/kurtis",
+          element: <WomenKurtis />
         },
         {
-          path:"skirts/palazzo-pants",
-          element:<WomenPalazzoPants/>
+          path: "skirts/long-skirts",
+          element: <LongSkirts />
         },
         {
-          path:"vintage/kaftans",
-          element:<NoProductsPage/>
+          path: "skirts/palazzo-pants",
+          element: <WomenPalazzoPants />
         },
         {
-          path:"vintage/ruffled-tops",
-          element:<NoProductsPage/>
+          path: "vintage/kaftans",
+          element: <NoProductsPage />
         },
         {
-          path:"vintage/halter-tops",
-          element:<HalterNeckSareeBlouses/>
+          path: "vintage/ruffled-tops",
+          element: <NoProductsPage />
         },
         {
-          path:"vintage/tube-dress-pants",
-          element:<NoProductsPage/>
+          path: "vintage/halter-tops",
+          element: <HalterNeckSareeBlouses />
         },
         {
-          path:"accessories/scarves",
-          element:<PremiumLinenStoles/>
+          path: "vintage/tube-dress-pants",
+          element: <NoProductsPage />
         },
         {
-          path:"accessories/duppattas",
-          element:<PremiumLinenStolesTwoCol/>
+          path: "vintage/tubedress-pants",
+          element: <NoProductsPage />
         },
         {
-          path:"accessories/headbands",
-          element:<BohemianHeadbands/>
+          path: "vintage/butterfly-pants",
+          element: <NoProductsPage />
         },
         {
-          path:"accessories/gratitude-journals",
-          element:<LeatherDiaries/>
+          path: "vintage/seinoritta-pants",
+          element: <NoProductsPage />
         },
         {
-          path:"accessories/bookmarks",
-          element:<PattachitraBookmarks/>
+          path: "accessories/scarves",
+          element: <PremiumLinenStoles />
         },
         {
-          path:"accessories/bags",
-          element:<KalamkariToteBags/>
+          path: "accessories/duppattas",
+          element: <PremiumLinenStolesTwoCol />
         },
         {
-          path:"sale",
-          element:<NoSalePage/>
+          path: "accessories/headbands",
+          element: <BohemianHeadbands />
         },
         {
-          path:"shop/new-arrivals",
-          element:<TerracottaJewelry/>
+          path: "accessories/diaries",
+          element: <LeatherDiaries />
         },
+        {
+          path: "accessories/bookmarks",
+          element: <PattachitraBookmarks />
+        },
+        {
+          path: "accessories/bags",
+          element: <KalamkariToteBags />
+        },
+        {
+          path: "sale",
+          element: <NoSalePage />
+        },
+        {
+          path: "shop/new-arrivals",
+          element: <TerracottaJewelry />
+        },
+        {
+          path: "shop",
+          element: <LongSkirts />
+        },
+        {
+          path: "sarees/batik-mulmul-sarees",
+          element: <BatikMulmulSarees />
+        },
+        {
+          path: "blouses/chiffon-organza-blouses",
+          element: <PrintedChiffonBlouses />
+        },
+
+        {
+          path: "blouses/plain-silk-blouses",
+          element: <PlainSilkBlouses />
+        },
+
+        {
+          path: "blouses/kantha-stitch-blouses",
+          element: <KanthaStitchBlouses />
+        },
+        {
+          path: "blouses/ajrakh-blouses",
+          element: <AjrakhBlouses />
+        },
+        {
+          path: "blouses/batik-blouses",
+          element: <BikiniStyleBatikBlouses />
+        },
+        {
+          path: "blouses/handloom-blouses",
+          element: <BempuriHandloomBlouses />
+        },
+        {
+          path:"/privacy",
+          element:<Privacy/>
+        },
+        {
+          path:"/refund",
+          element:<Refund/>
+        },
+        {
+          path:"/terms",
+          element:<Terms/>
+        }
       ]
+
     }
   ])
 

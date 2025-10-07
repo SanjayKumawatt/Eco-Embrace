@@ -81,9 +81,9 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold text-white mb-4">Policies</h3>
             <nav className="flex flex-col gap-2 text-sm">
-              <Link to="/policy/privacy" className="text-gray-400 hover:text-white">Privacy Policy</Link>
-              <Link to="/policy/refund" className="text-gray-400 hover:text-white">Refund Policy</Link>
-              <Link to="/policy/terms" className="text-gray-400 hover:text-white">Terms of Service</Link>
+              <Link to="/privacy" className="text-gray-400 hover:text-white">Privacy Policy</Link>
+              <Link to="/refund" className="text-gray-400 hover:text-white">Refund Policy</Link>
+              <Link to="/terms" className="text-gray-400 hover:text-white">Terms of Service</Link>
             </nav>
           </div>
 
