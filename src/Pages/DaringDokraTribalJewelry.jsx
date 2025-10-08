@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react'; // useState added
 import { Link } from 'react-router-dom';
+// 👈 Cart Context को इम्पोर्ट करें (पाथ एडजस्ट करें)
+import { useCart } from '../context/CartContext'; 
 
 
 import img1 from "../assets/dokra-craft-jewelry/img1.webp";
@@ -12,71 +14,99 @@ import img7 from "../assets/dokra-craft-jewelry/img7.webp";
 import img8 from "../assets/dokra-craft-jewelry/img8.webp";
 
 
-
-
 // --- Placeholder Product Data for Dokra Tribal Jewelry ---
 // NOTE: 'export' किया गया है ताकि PDP इसे यूज़ कर सके।
 export const dokraProducts = [
     // Row 1
-    { id: 301, name: "Geometric Pendants - Dokra Lost Wax Method Brass Pendant Earring...", price: "Rs. 1,598.00", imageUrl: img1, sku: "DKR301" },
-    { id: 302, name: "DHOKRA TRIBAL NECKLACE - Gunguru Choker Necklace, Classic Handcrafted...", price: "Rs. 5,900.00", imageUrl: img2, sku: "DKR302" },
-    { id: 303, name: "Geometric Pendants - Dokra Lost Wax Method Brass Pendant Earring...", price: "Rs. 1,598.00", imageUrl: img3, sku: "DKR303" },
-    { id: 304, name: "DHOKRA TRIBAL NECKLACE - Evening Sun Rays Necklace, Antique Sun...", price: "Rs. 4,400.00", imageUrl: img4, sku: "DKR304" },
+    { id: 301, name: "Geometric Pendants - Dokra Lost Wax Method Brass Pendant Earring...", price: "Rs. 1,598.00", imageUrl: img1, sku: "DKR301", quantityOptions: ['1', '2', '3'] },
+    { id: 302, name: "DHOKRA TRIBAL NECKLACE - Gunguru Choker Necklace, Classic Handcrafted...", price: "Rs. 5,900.00", imageUrl: img2, sku: "DKR302", quantityOptions: ['1', '2'] },
+    { id: 303, name: "Geometric Pendants - Dokra Lost Wax Method Brass Pendant Earring...", price: "Rs. 1,598.00", imageUrl: img3, sku: "DKR303", quantityOptions: ['1', '2', '3'] },
+    { id: 304, name: "DHOKRA TRIBAL NECKLACE - Evening Sun Rays Necklace, Antique Sun...", price: "Rs. 4,400.00", imageUrl: img4, sku: "DKR304", quantityOptions: ['1'] },
 
     // Row 2
-    { id: 305, name: "DHOKRA TRIBAL NECKLACE - Chariot Rays Necklace, Handcrafted Pendant Necklace...", price: "Rs. 5,000.00", imageUrl: img5, sku: "DKR305" },
-    { id: 306, name: "DHOKRA TRIBAL NECKLACE - Uma Princess Necklace, Antique Princess Brass...", price: "Rs. 1,900.00", imageUrl: img6, sku: "DKR306" },
-    { id: 307, name: "DHOKRA TRIBAL NECKLACE - Dokra Orissa Necklace, Handcrafted Pendant...", price: "Rs. 1,900.00", imageUrl: img7, sku: "DKR307" },
-    { id: 308, name: "DHOKRA TRIBAL NECKLACE - Rustic Craft Product Necklace, Multicolor Squares Brass...", price: "Rs. 1,900.00", imageUrl: img8, sku: "DKR308" },
+    { id: 305, name: "DHOKRA TRIBAL NECKLACE - Chariot Rays Necklace, Handcrafted Pendant Necklace...", price: "Rs. 5,000.00", imageUrl: img5, sku: "DKR305", quantityOptions: ['1', '2'] },
+    { id: 306, name: "DHOKRA TRIBAL NECKLACE - Uma Princess Necklace, Antique Princess Brass...", price: "Rs. 1,900.00", imageUrl: img6, sku: "DKR306", quantityOptions: ['1'] },
+    { id: 307, name: "DHOKRA TRIBAL NECKLACE - Dokra Orissa Necklace, Handcrafted Pendant...", price: "Rs. 1,900.00", imageUrl: img7, sku: "DKR307", quantityOptions: ['1', '2', '3'] },
+    { id: 308, name: "DHOKRA TRIBAL NECKLACE - Rustic Craft Product Necklace, Multicolor Squares Brass...", price: "Rs. 1,900.00", imageUrl: img8, sku: "DKR308", quantityOptions: ['1'] },
 ];
 
-// Reusable Product Card Component
-const ProductCard = ({ product }) => (
-    <div className="bg-white border border-gray-100 rounded-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl group">
+// Reusable Product Card Component (NOW FUNCTIONAL)
+const ProductCard = ({ product }) => {
+    // Dropdown options
+    const options = product.quantityOptions || ['1']; 
+    
+    // 👈 1. Quantity State: Dropdown selection को ट्रैक करें
+    const [selectedQuantity, setSelectedQuantity] = useState(options[0]); 
+    
+    // 👈 2. useCart Hook
+    const { addToCart, toggleCartDrawer } = useCart();
 
-        {/* Product Image Link */}
-        <Link to={`/product/${product.sku}`} className="block w-full h-72 sm:h-80 overflow-hidden bg-gray-50">
-            <img
-                src={product.imageUrl}
-                alt={product.name}
-                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-            />
-        </Link>
+    const handleAddToCart = (e) => {
+        e.preventDefault(); 
+        e.stopPropagation(); 
+        
+        // 👈 3. Cart में Item और Selected Quantity (number में) भेजें
+        addToCart(
+            product, 
+            parseInt(selectedQuantity), // Quantity को integer में कन्वर्ट करें
+            {} // कोई ऑप्शन नहीं, सिर्फ़ क्वांटिटी
+        );
+        
+        // Cart Drawer को खोलें
+        toggleCartDrawer(); 
+    };
 
-        {/* Product Details and CTA */}
-        <div className="p-3 text-center">
-            {/* Product Name Link */}
-            <Link to={`/product/${product.sku}`} className="block text-sm font-medium text-gray-700 hover:text-indigo-600 mb-1 h-12 overflow-hidden">
-                {product.name}
+    return (
+        <div className="bg-white border border-gray-100 rounded-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl group">
+
+            {/* Product Image Link */}
+            <Link to={`/product/${product.sku}`} className="block w-full h-72 sm:h-80 overflow-hidden bg-gray-50">
+                <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
             </Link>
 
-            {/* Price */}
-            <p className="text-base font-semibold text-gray-900 mb-3">
-                {product.price}
-            </p>
+            {/* Product Details and CTA */}
+            <div className="p-3 text-center">
+                {/* Product Name Link */}
+                <Link to={`/product/${product.sku}`} className="block text-sm font-medium text-gray-700 hover:text-indigo-600 mb-1 h-12 overflow-hidden">
+                    {product.name}
+                </Link>
 
-            {/* Quantity Dropdown and Add to Cart */}
-            <div className="flex items-center space-x-2">
-                <select
-                    className="w-1/4 p-2 text-sm border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                    defaultValue="1"
-                >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    {/* Add more options */}
-                </select>
+                {/* Price */}
+                <p className="text-base font-semibold text-gray-900 mb-3">
+                    {product.price}
+                </p>
 
-                <button
-                    type="button"
-                    className="w-3/4 py-2 text-sm font-semibold text-white bg-neutral-800 rounded-md transition duration-300 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    onClick={() => console.log(`Adding ${product.name} to cart`)}
-                >
-                    ADD TO CART
-                </button>
+                {/* Quantity Dropdown and Add to Cart */}
+                <div className="flex items-center space-x-2">
+                    {/* Quantity Dropdown */}
+                    {product.quantityOptions && product.quantityOptions.length > 0 && (
+                        <select
+                            className="w-1/4 p-2 text-sm border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                            value={selectedQuantity}
+                            onChange={(e) => setSelectedQuantity(e.target.value)}
+                        >
+                            {options.map((qty, index) => (
+                                <option key={index} value={qty}>{qty}</option>
+                            ))}
+                        </select>
+                    )}
+                    
+                    <button
+                        type="button"
+                        className="w-3/4 py-2 text-sm font-semibold text-white bg-neutral-800 rounded-md transition duration-300 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        onClick={handleAddToCart} // 👈 Updated Handler
+                    >
+                        ADD TO CART
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
+};
 
 // Main Component
 const DaringDokraTribalJewelry = () => {

@@ -1,45 +1,81 @@
 import React, { createContext, useContext, useState } from 'react';
 
-// 1. Context बनाएँ
+// Context object
 const CartContext = createContext();
 
-// 2. Custom hook बनाएँ ताकि components आसानी से Cart data यूज़ कर सकें
+// Custom Hook to use the cart anywhere
 export const useCart = () => {
   return useContext(CartContext);
 };
 
-// 3. Provider component बनाएँ
+// Provider Component
 export const CartProvider = ({ children }) => {
+  // Cart state: holds the list of items
   const [cartItems, setCartItems] = useState([]);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false); // New state for Drawer
 
-  // Function to add an item to the cart
-  const addToCart = (product, quantity = 1) => {
+  // Function to add an item
+  const addToCart = (product, quantity = 1, options = {}) => {
     setCartItems(prevItems => {
-      // Check if item already exists in the cart
-      const existingItemIndex = prevItems.findIndex(item => item.sku === product.sku);
+      // Create a unique identifier based on SKU and selected option (size, color, etc.)
+      const uniqueId = `${product.sku}-${options.selectedOption || ''}`;
+      
+      const existingItemIndex = prevItems.findIndex(item => item.uniqueId === uniqueId);
 
       if (existingItemIndex > -1) {
-        // If it exists, update the quantity
+        // Item पहले से मौजूद है: Quantity बढ़ाओ
         const newItems = [...prevItems];
         newItems[existingItemIndex].quantity += quantity;
         return newItems;
       } else {
-        // If it's a new item, add it to the cart
-        return [...prevItems, { ...product, quantity }];
+        // नया आइटम है: Cart में जोड़ो
+        return [...prevItems, { 
+            ...product, 
+            quantity, 
+            uniqueId,
+            selectedOption: options.selectedOption // Add selected option
+        }];
       }
     });
+    // जब भी आइटम ऐड हो, drawer को खोल दो
+    setIsDrawerOpen(true);
+  };
+  
+  // Function to toggle the cart drawer
+  const toggleCartDrawer = () => {
+    setIsDrawerOpen(prev => !prev);
+  };
+  
+  // Function to remove an item
+  const removeFromCart = (uniqueId) => {
+    setCartItems(prevItems => prevItems.filter(item => item.uniqueId !== uniqueId));
+  };
+  
+  // Function to update quantity
+  const updateQuantity = (uniqueId, newQuantity) => {
+    setCartItems(prevItems => 
+        prevItems.map(item => 
+            item.uniqueId === uniqueId ? { ...item, quantity: Math.max(1, newQuantity) } : item
+        )
+    );
   };
 
-  // Function to get the total number of items in the cart (for the icon badge)
-  const getTotalItems = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-  };
+  // Helper functions
+  const getTotalAmount = () => cartItems.reduce((total, item) => {
+      // Assuming price format is "Rs. 4,500.00"
+      const price = parseFloat(item.price.replace('Rs.', '').replace(',', '').trim());
+      return total + (price * item.quantity);
+  }, 0);
+
 
   const contextValue = {
     cartItems,
     addToCart,
-    getTotalItems,
-    // You can add removeFromCart, updateQuantity, etc. here
+    removeFromCart,
+    updateQuantity,
+    getTotalAmount,
+    isDrawerOpen,         // 👈 New state
+    toggleCartDrawer,     // 👈 New function
   };
 
   return (

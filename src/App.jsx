@@ -15,7 +15,7 @@ import ChanderiCottonSarees from "./Pages/ChanderiCottonSarees";
 import SouthCottonSarees from "./Pages/SouthCottonSarees";
 import BagruBlockPrintSarees from "./Pages/BagruBlockPrintSarees";
 
-import { CartProvider } from "./context/CartContext"; // 👈 Import CartProvider
+// import { CartProvider } from "./context/CartContext"; // 👈 Import CartProvider
 import KotaDoriaSarees from "./Pages/KotaDoriaSarees";
 import ReadyMadeSareeBlouses from "./Pages/ReadyMadeSareeBlouses";
 import BanarasiBrocadeBlouses from "./Pages/BanarasiBrocadeBlouses";
@@ -43,6 +43,11 @@ import BempuriHandloomBlouses from "./Pages/BempuriHandloomBlouses";
 import Privacy from "./Components/Privacy";
 import Refund from "./Components/Refund";
 import Terms from "./Components/Terms";
+import { CartProvider } from "./context/CartContext";
+import CheckoutPage from "./Pages/CheckoutPage"; // 👈 New Import
+
+
+
 
 function App() {
   const router = createBrowserRouter([
@@ -245,17 +250,21 @@ function App() {
           element: <BempuriHandloomBlouses />
         },
         {
-          path:"/privacy",
-          element:<Privacy/>
+          path: "/privacy",
+          element: <Privacy />
         },
         {
-          path:"/refund",
-          element:<Refund/>
+          path: "/refund",
+          element: <Refund />
         },
         {
-          path:"/terms",
-          element:<Terms/>
-        }
+          path: "/terms",
+          element: <Terms />
+        },
+        {
+          path: "checkout",
+          element: <CheckoutPage />
+        },
       ]
 
     }
